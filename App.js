@@ -7,52 +7,53 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Image, StyleSheet, Text, View } from "react-native";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+var MOCKED_MOVIES_DATA = [
+  {
+    title: "标题",
+    year: "2015",
+    posters: { thumbnail: "https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=7eb5b3ce9bcad1c8cfbbfa274f3c67c4/83025aafa40f4bfbb5163db50d4f78f0f6361808.jpg" }
+  }
+];
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  rightContainer: {
+    flex: 1,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  year: {
+    textAlign: 'center',
+  },
+  thumbnail: {
+    width: 53,
+    height: 81
+  }
 });
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    return (
-      //  <View style={{ flex: 3, justifyContent: "center", alignItems: "center" }}>
-      //     <Text>Hello, world!</Text>
-      //   </View>
-      let pic = {
-        uri: 'https://e.hiphotos.baidu.com/image/pic/item/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg'
-      };
-      return (
-        <Image source={pic} style={{width: 193, height: 110}} />
-
-      // <View style={styles.container}>
-      //   <Text style={styles.welcome}>Welcome to React Native!</Text>
-      //   <Text style={styles.instructions}>To get started, edit App.js</Text>
-      //   <Text style={styles.instructions}>{instructions}</Text>
-      // </View>
-    );
+  var movie = MOCKED_MOVIES_DATA[0];
+  return (
+    <View style={styles.container}>
+      <Image source={{ uri: movie.posters.thumbnail }} style={styles.thumbnail} />
+      <View style={styles.rightContainer}>
+        <Text style={styles.title}>{movie.title}</Text>
+        <Text style={styles.year}>{movie.year}</Text>
+      </View>
+    </View>
+  );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
